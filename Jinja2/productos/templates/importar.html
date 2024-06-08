@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Importar Productos{% endblock %}
+
+{% block content %}
+<h1>Importar Productos</h1>
+<form method="post" enctype="multipart/form-data" onsubmit="return validateFile()">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="file">Seleccionar archivo CSV:</label>
+        <input type="file" name="file" id="file" class="form-control">
+    </div><br>
+    <button type="submit" class="btn btn-primary">Importar</button>
+</form><br>
+<a href="{% url 'listar_productos' %}">Volver a la lista</a>
+<script>
+function validateFile() {
+    var fileInput = document.getElementById('file');
+    if (!fileInput.value) {
+        alert('Tiene que colocar un archivo');
+        return false; 
+    }
+    return true;
+}
+</script>
+{% endblock %}

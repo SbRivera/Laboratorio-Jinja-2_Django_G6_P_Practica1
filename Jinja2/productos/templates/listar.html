@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Listar Productos{% endblock %}
+
+{% block content %}
+<h1>Listar Productos</h1>
+<ul class="list-group">
+    {% for producto in productos %}
+    <li class="list-group-item"> 
+        {{ producto.nombre }} - {{ producto.precio }} - {{ producto.cantidad }}
+        <a href="{% url 'editar_producto' producto.id %}">Editar</a> |
+        <a href="{% url 'eliminar_producto' producto.id %}">Eliminar</a>
+    </li>
+    {% endfor %}
+</ul><br>
+<a href="{% url 'crear_producto' %}">Crear Producto</a> |
+<a href="{% url 'importar_productos' %}">Importar Productos</a> |
+<a href="{% url 'exportar_productos' %}">Exportar Productos</a>
+{% endblock %}
